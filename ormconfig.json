@@ -1,0 +1,17 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "toor",
+  "database": "luck",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "autoLoadEntities": true,
+  "migrations": ["dist/migration/**/*{.ts,.js}"],
+  "seeds": ["src/migration/seeds/**/*{.ts,.js}"],
+  "factories": ["src/migration/factories/**/*{.ts,.js}"],
+  "cli": {
+    "migrationsDir": "src/migration"
+  },
+  "synchronize": true
+}
