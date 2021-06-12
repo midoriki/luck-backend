@@ -9,7 +9,7 @@ import {
   UseGuards,
   HttpStatus,
   Res,
-  Request,
+  Request
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -51,7 +51,7 @@ export class UserController {
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
     @Request() req,
-    @Res() res,
+    @Res() res
   ) {
     if (req.user.id !== +id) {
       return res.status(HttpStatus.BAD_REQUEST).send();

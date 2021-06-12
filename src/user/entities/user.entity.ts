@@ -3,9 +3,10 @@ import {
   Column,
   PrimaryGeneratedColumn,
   BeforeInsert,
-  Index,
+  Index
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Role } from '../../role/role.enum';
 
 @Entity()
 export class User {
@@ -50,7 +51,7 @@ export class User {
   @Column({
     type: 'timestamp',
     default: () => 'NOW()',
-    onUpdate: 'NOW()',
+    onUpdate: 'NOW()'
   })
   updated: string;
 

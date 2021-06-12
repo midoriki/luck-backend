@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Role } from '../role/role.enum';
 
 @Injectable()
 export class UserService {
@@ -15,16 +16,16 @@ export class UserService {
     'birthdate',
     'address',
     'phone',
-    'gender',
+    'gender'
   ];
   constructor(
     @InjectRepository(User)
-    private userRepository: Repository<User>,
+    private userRepository: Repository<User>
   ) {}
 
   findAll(): Promise<User[]> {
     return this.userRepository.find({
-      select: this.select,
+      select: this.select
     });
   }
 
@@ -33,14 +34,17 @@ export class UserService {
   }
 
   async create(createUserDto: CreateUserDto): Promise<any> {
-    const newUser = this.userRepository.create(createUserDto);
+    const newUser = this.userRepository.create({
+      ...createUserDto,
+      roles: Role.User
+    });
     const { password, ...result } = await this.userRepository.save(newUser);
     return result;
   }
 
   findOne(id: number): Promise<User> {
     return this.userRepository.findOne(id, {
-      select: this.select,
+      select: this.select
     });
   }
 

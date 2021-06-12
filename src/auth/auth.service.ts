@@ -8,7 +8,7 @@ import { User } from '../user/entities/user.entity';
 export class AuthService {
   constructor(
     private usersService: UserService,
-    private jwtService: JwtService,
+    private jwtService: JwtService
   ) {}
 
   async validateUser(username: string, password: string): Promise<any> {
@@ -27,9 +27,10 @@ export class AuthService {
       username: user.username,
       roles: user.roles,
       name: user.name,
+      coin: user.coin
     };
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign(payload)
     };
   }
 }
